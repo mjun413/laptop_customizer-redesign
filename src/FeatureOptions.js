@@ -6,6 +6,7 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD'
 });
+
 class FeatureOptions extends Component {
   render() {
     const features = Object.keys(this.props.features).map((feature, idx) => {
@@ -19,8 +20,8 @@ class FeatureOptions extends Component {
               id={itemHash}
               className="feature__option"
               name={slugify(feature)}
-              checked={item.name === this.state.selected[feature].name}
-              onChange={e => this.updateFeature(feature, item)}
+              checked={item.name === this.props.selected[feature].name}
+              onChange={() => this.props.handleFeatureUpdate(feature, item)}
             />
             <label htmlFor={itemHash} className="feature__label">
               {item.name} ({USCurrencyFormat.format(item.cost)})
@@ -28,6 +29,7 @@ class FeatureOptions extends Component {
           </div>
         );
       });
+
       return (
         <fieldset className="feature" key={featureHash}>
           <legend className="feature__name">
@@ -37,6 +39,8 @@ class FeatureOptions extends Component {
         </fieldset>
       );
     });
+
+    return features;
   }
 }
 
