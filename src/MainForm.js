@@ -5,9 +5,9 @@ import FeatureOptions from '../FeatureOptions/FeatureOptions';
 class MainForm extends Component {
   render() {
     return (
-      <form className='main_form'>
+      <form className='main__form'>
         <h2>Customize your laptop</h2>
-        <FeatureOptions />
+        <FeatureOptions handleFeatureUpdate={this.props.handleFeatureUpdate} selected={this.props.selected} features={this.props.features}/>
       </form>
     );
   }
